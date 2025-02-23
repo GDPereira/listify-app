@@ -1,9 +1,15 @@
+import { useCheckAuth } from "@/src/hooks/useCheckAuth";
 import { Redirect, Slot } from "expo-router";
+import { ActivityIndicator } from "react-native-paper";
 
 export default function AppLayout() {
-  const user = undefined;
+  const { data, isLoading } = useCheckAuth();
 
-  if (!user) {
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (!data?.data.user) {
     return <Redirect href={"/(account)/login"} />;
   }
 

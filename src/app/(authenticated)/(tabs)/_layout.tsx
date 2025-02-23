@@ -7,18 +7,19 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Index",
+          headerShown: false,
           tabBarIcon: ({ color }) => (
             <Feather name="home" size={24} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="home"
+        name="user"
         options={{
-          title: "Home 123",
+          title: "Profile",
+          headerShown: false,
           tabBarIcon: ({ color }) => (
-            <Feather name="settings" size={24} color={color} />
+            <Feather name="user" size={24} color={color} />
           ),
         }}
       />
