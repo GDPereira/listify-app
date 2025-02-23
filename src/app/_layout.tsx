@@ -1,4 +1,11 @@
+import {
+  DarkTheme as NavigationDarkTheme,
+  DefaultTheme as NavigationDefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import merge from "deepmerge";
 import { Stack } from "expo-router";
+import { useColorScheme } from "react-native";
 import {
   MD3DarkTheme,
   MD3LightTheme,
@@ -6,13 +13,8 @@ import {
   adaptNavigationTheme,
 } from "react-native-paper";
 import { Colors } from "../constants/colors";
-import { useColorScheme } from "react-native";
-import {
-  DarkTheme as NavigationDarkTheme,
-  DefaultTheme as NavigationDefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
-import merge from "deepmerge";
+import { QueryProvider } from "../providers/queryProvider";
+import { Dialog } from "../components/dialog";
 
 const customDarkTheme = { ...MD3DarkTheme, colors: Colors.dark };
 const customLightTheme = { ...MD3LightTheme, colors: Colors.light };
@@ -31,17 +33,17 @@ export default function RootLayout() {
     colorScheme === "dark" ? combinedDarkTheme : combinedLightTheme;
 
   return (
-    <PaperProvider theme={paperTheme}>
-      <ThemeProvider value={paperTheme}>
-        <Stack>
-          <Stack.Screen
-            name="(tabs)"
-            options={{
+    <QueryProvider>
+      <PaperProvider theme={paperTheme}>
+        <ThemeProvider value={paperTheme}>
+          <Dialog />
+          <Stack
+            screenOptions={{
               headerShown: false,
             }}
           />
-        </Stack>
-      </ThemeProvider>
-    </PaperProvider>
+        </ThemeProvider>
+      </PaperProvider>
+    </QueryProvider>
   );
 }

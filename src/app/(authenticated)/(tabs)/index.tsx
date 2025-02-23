@@ -16,7 +16,7 @@ export default function Index() {
       <Card>
         <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
         <Card.Title
-          title="Card Title"
+          title="Card Title 123"
           subtitle="Card Subtitle"
           left={LeftContent}
         />
