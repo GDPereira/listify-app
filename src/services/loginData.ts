@@ -10,7 +10,11 @@ export interface LoginValues {
 }
 
 export const postLogin = async (values: LoginValues) => {
-  const { data } = await api.post<LoginResponse>("/auth/login", values);
+  const { data, headers } = await api.post<LoginResponse>(
+    "/auth/login",
+    values,
+  );
+  const cookies = headers["set-cookie"];
 
-  return data;
+  return { data, cookies };
 };
