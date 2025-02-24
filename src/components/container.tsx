@@ -1,19 +1,33 @@
 import { PropsWithChildren } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import {
   SafeAreaView,
   SafeAreaViewProps,
 } from "react-native-safe-area-context";
 
-interface ContainerProps extends SafeAreaViewProps {}
+interface ContainerProps extends SafeAreaViewProps {
+  header?: React.ReactNode;
+  isCenteredContent?: boolean;
+}
 
 export const Container = ({
   children,
+  header,
+  isCenteredContent = false,
   ...props
 }: PropsWithChildren<ContainerProps>) => {
   return (
-    <SafeAreaView style={styles.container} {...props}>
-      {children}
+    <SafeAreaView style={{ flexGrow: 1 }} {...props}>
+      {header}
+      <View
+        style={[
+          styles.container,
+          isCenteredContent && styles.containerCentered,
+          !!header && styles.containerMargin,
+        ]}
+      >
+        {children}
+      </View>
     </SafeAreaView>
   );
 };
@@ -21,7 +35,12 @@ export const Container = ({
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
-    paddingTop: 20,
     flex: 1,
+  },
+  containerCentered: {
+    justifyContent: "center",
+  },
+  containerMargin: {
+    marginTop: 20,
   },
 });

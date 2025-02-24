@@ -34,7 +34,7 @@ export const LoginScreen = () => {
   };
 
   return (
-    <Container>
+    <Container isCenteredContent>
       <Card>
         <Card.Title titleVariant="titleLarge" title="Login" />
         <Card.Content>

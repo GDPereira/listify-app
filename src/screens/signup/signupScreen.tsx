@@ -41,7 +41,7 @@ export const SignupScreen = () => {
   };
 
   return (
-    <Container>
+    <Container isCenteredContent>
       <Card>
         <Card.Title titleVariant="titleLarge" title="Sign Up" />
         <Card.Content>
