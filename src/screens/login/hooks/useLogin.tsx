@@ -1,20 +1,16 @@
+import { useCookies } from "@/src/hooks/useCookies";
 import { LoginValues, postLogin } from "@/src/services/loginData";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const useLogin = () => {
   const router = useRouter();
+  const { storeCookie } = useCookies();
 
   const { mutate, isPending, data } = useMutation({
     mutationFn: postLogin,
     onSuccess: ({ cookies }) => {
-      cookies?.forEach((cookie) => {
-        const [key, value] = cookie.split("=");
-        const [token] = value.split(";");
-
-        AsyncStorage.setItem(key, token);
-      });
+      storeCookie(cookies?.[0] ?? "");
 
       router.replace("/(authenticated)/(tabs)");
     },
