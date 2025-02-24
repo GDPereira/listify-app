@@ -2,7 +2,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 import { Text, TextInput, TextInputProps, useTheme } from "react-native-paper";
 
-interface InputProps extends TextInputProps {
+export interface InputProps extends TextInputProps {
   name: string;
 }
 
