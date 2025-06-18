@@ -3,9 +3,10 @@ import { Header } from "@/src/components/header";
 import { useLogout } from "@/src/hooks/useLogout";
 import { Feather } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
-import { Card, Text } from "react-native-paper";
+import { Card, Text, useTheme } from "react-native-paper";
 
 export const UserScreen = () => {
+  const { colors } = useTheme();
   const { logout } = useLogout();
 
   const onClickLogout = () => {
@@ -17,7 +18,7 @@ export const UserScreen = () => {
       <Card onPress={onClickLogout}>
         <Card.Content style={styles.cardRow}>
           <Text variant="titleMedium">Logout</Text>
-          <Feather name="log-out" size={24} />
+          <Feather name="log-out" size={24} color={colors.primary} />
         </Card.Content>
       </Card>
     </Container>

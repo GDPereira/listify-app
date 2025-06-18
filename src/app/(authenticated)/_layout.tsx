@@ -6,7 +6,7 @@ export default function AppLayout() {
   const { data, isLoading } = useCheckAuth();
 
   if (isLoading) {
-    return <ActivityIndicator />;
+    return <ActivityIndicator style={{ alignItems: "center", flex: 1 }} />;
   }
 
   if (!data?.data.user) {
